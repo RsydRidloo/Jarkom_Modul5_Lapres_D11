@@ -42,9 +42,9 @@ Lalu setting pada `nano /etc/network/interfaces` pada masing-masing uml dengan k
 
     auto eth0
     iface eth0 inet static
-    address 10.151.78.62
+    address 10.151.78.50
     netmask 255.255.255.252
-    gateway 10.151.78.61
+    gateway 10.151.78.49
 
     auto eth1
     iface eth1 inet static
@@ -66,7 +66,7 @@ Lalu setting pada `nano /etc/network/interfaces` pada masing-masing uml dengan k
 
     auto eth1
     iface eth1 inet static
-    address 10.151.79.121
+    address 10.151.79.97
     netmask 255.255.255.248
 
     auto eth2
@@ -112,24 +112,24 @@ Lalu setting pada `nano /etc/network/interfaces` pada masing-masing uml dengan k
 
     auto eth0
     iface eth0 inet static
-    address 10.151.79.122
+    address 10.151.79.98
     netmask 255.255.255.248
-    gateway 10.151.79.121
+    gateway 10.151.79.97
 
 **MOJOKERTO (Sebagai DNS Server)**
 
     auto eth0
     iface eth0 inet static
-    address 10.151.79.123
+    address 10.151.79.99
     netmask 255.255.255.248
-    gateway 10.151.79.121
+    gateway 10.151.79.97
 
 Kemudian menambahkan file route.sh di Surabaya saja, karena pada uml untuk 0.0.0.0 sudah otomatis terbuat
 
     route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.0.2
     route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.0.6
     route add -net 192.168.0.8 netmask 255.255.255.248 gw 192.168.0.6
-    route add -net 10.151.79.120 netmask 255.255.255.248 gw 192.168.0.2
+    route add -net 10.151.79.96 netmask 255.255.255.248 gw 192.168.0.2
 
 Kemudian untuk kofigurasi DHCP Server pada MOJOKERTO dan DHCP RELAY pada KEDIRI, SURABAYA, dan BATU adalah
 
@@ -182,7 +182,7 @@ Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
 
 ## Nomor 5: Membatasi akses ke MALANG, Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya.
 
-    iptables -A INPUT -s 192.168.2.0/24 -m time --timestart 07:00 --timestop 17:00 -j REJECT
+    iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 -j REJECT
 
 ## Nomor 6: SURABAYA disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80.
 
