@@ -9,7 +9,7 @@ Anggota Kelompok:
 
 - Menyetting topologi
 
-Pertama membuat file topo.sh di dalam putty dengan konfigurasi
+Pertama membuat file `topo.sh` di dalam putty dengan konfigurasi
 
     # Switch
     uml_switch -unix switch1 > /dev/null < /dev/null &
@@ -34,11 +34,11 @@ Pertama membuat file topo.sh di dalam putty dengan konfigurasi
     xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch6 mem=64M &
     xterm -T SIDOARJO -e linux ubd0=SIDOARJO,jarkom umid=SIDOARJO eth0=daemon,,,switch3 mem=64M &
 
-Pada semua UML router, ketikkan **nano /etc/sysctl.conf** serta uncomment net.ipv4.ip_forward=1 . Untuk mengaktifkan perubahan baru ketikkan **sysctl -p**.
+Pada semua UML router, ketikkan `nano /etc/sysctl.conf` serta uncomment `net.ipv4.ip_forward=1` . Untuk mengaktifkan perubahan baru ketikkan `sysctl -p`.
 
-Lalu setting /etc/network/interfaces pada masing-masing uml dengan konfigurasi
+Lalu setting pada `nano /etc/network/interfaces` pada masing-masing uml dengan konfigurasi
 
-SURABAYA (Sebagai Router)
+**SURABAYA (Sebagai Router)**
 
     auto eth0
     iface eth0 inet static
@@ -56,13 +56,13 @@ SURABAYA (Sebagai Router)
     address 192.168.0.5
     netmask 255.255.255.252
 
-BATU (Sebagai Router)
+**BATU (Sebagai Router)**
 
     auto eth0
     iface eth0 inet static
     address 192.168.0.2
     netmask 255.255.255.252
-gateway 192.168.0.1
+    gateway 192.168.0.1
 
     auto eth1
     iface eth1 inet static
@@ -74,7 +74,7 @@ gateway 192.168.0.1
     address 192.168.1.1
     netmask 255.255.255.0
 
-KEDIRI (Sebagai Router)
+**KEDIRI (Sebagai Router)**
 
     auto eth0
     iface eth0 inet static
@@ -92,7 +92,7 @@ KEDIRI (Sebagai Router)
     address 192.168.2.1
     netmask 255.255.255.0
 
-MADIUN (Sebagai Web Server)
+**MADIUN (Sebagai Web Server)**
 
     auto eth0
     iface eth0 inet static
@@ -100,7 +100,7 @@ MADIUN (Sebagai Web Server)
     netmask 255.255.255.248
     gateway 192.168.0.9
 
-PROBOLINGGO (Sebagai Web Server)
+**PROBOLINGGO (Sebagai Web Server)**
 
     auto eth0
     iface eth0 inet static
@@ -108,7 +108,7 @@ PROBOLINGGO (Sebagai Web Server)
     netmask 255.255.255.248
     gateway 192.168.0.9
 
-MALANG (Sebagai DNS Server)
+**MALANG (Sebagai DNS Server)**
 
     auto eth0
     iface eth0 inet static
@@ -116,7 +116,7 @@ MALANG (Sebagai DNS Server)
     netmask 255.255.255.248
     gateway 10.151.79.121
 
-MOJOKERTO (Sebagai DNS Server)
+**MOJOKERTO (Sebagai DNS Server)**
 
     auto eth0
     iface eth0 inet static
@@ -135,9 +135,9 @@ Kemudian untuk kofigurasi DHCP Server pada MOJOKERTO dan DHCP RELAY pada KEDIRI,
 
 Pertama sebelum install harus melakukan `apt-get update` terlebih dahulu
 
-Pada DHCP Server Jalankan **apt-get install isc-dhcp-server** pada uml MOJOKERTO
+Pada DHCP Server Jalankan `apt-get install isc-dhcp-server` pada uml MOJOKERTO
 
-Lalu setting pada **nano /etc/dhcp/dhcpd.conf**, dengan konfigurasi
+Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
 
     subnet 10.151.79.0 netmask 255.255.255.0 {
     }
@@ -148,7 +148,7 @@ Lalu setting pada **nano /etc/dhcp/dhcpd.conf**, dengan konfigurasi
         option routers 192.168.1.1;
         option broadcast-address 192.168.1.255;
         option domain-name-servers 202.46.129.2;
-     default-lease-time 600;
+        default-lease-time 600;
         max-lease-time 7200;
     }
 
