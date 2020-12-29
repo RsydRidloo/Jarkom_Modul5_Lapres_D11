@@ -211,32 +211,46 @@ Jika mendapatkan IP seperti gambar di atas maka sudah benar untuk seting DHCP Se
 
 ## Nomor 1: Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi SURABAYA menggunakan iptables, namun Bibah tidak ingin kalian menggunakan MASQUERADE.
 
+Buat file dengan nama no1.sh pada UML Surabaya dengan isi sebagai berikut:
+
     iptables -t nat -A POSTROUTING -s 192.168.0.0/22 -o eth0 -j SNAT --to-source 10.151.78.50
 
 ## Nomor 2: Mendrop semua akses SSH dari luar Topologi (UML) Kalian pada server yang memiliki ip DMZ (DHCP dan DNS SERVER) pada SURABAYA demi menjaga keamanan.
 
+Buat file dengan nama no2.sh pada UML Surabaya dengan isi sebagai berikut:
+
     iptables -A FORWARD -d 10.151.79.96/29 -i eth0 -p tcp --dport 22 -j DROP
     
 ## Nomor 3: Bibah meminta kalian untuk membatasi DHCP dan DNS server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server, selebihnya akan di DROP.
+
+Buat file dengan nama no3.sh pada UML Malang dan Mojokerto dengan isi sebagai berikut:
 
     iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 -j DROP
     iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
 
 ## Nomor 4: Membatasi akses ke MALANG, Akses dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat.
 
+Buat file dengan nama no4.sh pada UML Malang dengan isi sebagai berikut:
+
     iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
     iptables -A INPUT -s 192.168.1.0/24 -j REJECT
 
 ## Nomor 5: Membatasi akses ke MALANG, Akses dari subnet GRESIK hanya diperbolehkan pada pukul 17.00 hingga pukul 07.00 setiap harinya.
 
+Buat file dengan nama no5.sh pada UML Malang dengan isi sebagai berikut:
+
     iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 -j REJECT
 
 ## Nomor 6: SURABAYA disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada PROBOLINGGO port 80 dan MADIUN port 80.
+
+Buat file dengan nama no6.sh pada UML Surabaya, Batu, dan Kediri dengan isi sebagai berikut:
 
     iptables -t nat -A PREROUTING -p tcp -d 10.151.79.98 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.0.11:80
     iptables -t nat -A PREROUTING -p tcp -d 10.151.79.98 -j DNAT --to-destination 192.168.0.10:80
 
 ## Nomor 7: Bibah ingin agar semua paket didrop oleh firewall (dalam topologi) tercatat dalam log pada setiap UML yang memiliki aturan drop.
+
+Buat file dengan nama no7.sh pada UML Surabaya, Malang, dan Mojokerto dengan isi sebagai berikut:
 
     iptables -N LOGGING
     iptables -A INPUT -j LOGGING
