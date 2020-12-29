@@ -176,7 +176,7 @@ Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
     
 Kemudian juga buka `nano /etc/default/isc-dhcp-server`, lalu konfigurasi seperti berikut:
 
-<img src="">
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/default_isc-dhcp-server.PNG">
 
 ## Pada DHCP Relay
 
@@ -184,11 +184,7 @@ Jalankan apt-get install isc-dhcp-relaypada uml KEDIRI, SURABAYA, dan BATU
 
 Kemudian buka `nano /etc/default/isc-dhcp-relay` masing-masing dengan:
 
-<img src="">
-
-<img src="">
-
-<img src="">
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/default_isc-dhcp-relay.PNG">
 
 Kemudian jalankan service isc-dhcp-relay restart pada uml KEDIRI, SURABAYA, dan BATU
 
@@ -208,9 +204,7 @@ Kemudian buka /etc/network/interfaces pada GRESIK dan SIDOARJO
 
 Lalu lakukan service networking restart pada keduanya :
 
-<img src="">
-
-<img src="">
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/client.PNG">
 
 Jika mendapatkan IP seperti gambar di atas maka sudah benar untuk seting DHCP Server dan DHCP Relay.
 
