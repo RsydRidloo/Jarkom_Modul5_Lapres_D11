@@ -7,6 +7,18 @@ Anggota Kelompok:
 
 **Kelompok kami pembagian subnet menggunakan metode vlsm**
 
+Pembagian subnet
+
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/messageImage_1609169372484.jpg">
+
+Jumlah IP pada tiap-tiap subnet dan range-nya yang ada pada topologi
+
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/nid.png">
+
+Kemudian untuk pembagian pohonnya adalah(puncaknya menggunakan prefix /22 karena menggunakan prefix /23 tidak dapat digunakan untuk membagi 2 subnet /24
+
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/tree.png">
+
 - Menyetting topologi
 
 Pertama membuat file `topo.sh` di dalam putty dengan konfigurasi
@@ -135,7 +147,7 @@ Kemudian untuk kofigurasi DHCP Server pada MOJOKERTO dan DHCP RELAY pada KEDIRI,
 
 Pertama sebelum install harus melakukan `apt-get update` terlebih dahulu
 
-Pada DHCP Server Jalankan `apt-get install isc-dhcp-server` pada uml MOJOKERTO
+## Pada DHCP Server Jalankan `apt-get install isc-dhcp-server` pada uml MOJOKERTO
 
 Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
 
@@ -161,6 +173,47 @@ Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
         default-lease-time 600;
         max-lease-time 7200;
     }
+    
+Kemudian juga buka `nano /etc/default/isc-dhcp-server`, lalu konfigurasi seperti berikut:
+
+<img src="">
+
+## Pada DHCP Relay
+
+Jalankan apt-get install isc-dhcp-relaypada uml KEDIRI, SURABAYA, dan BATU
+
+Kemudian buka `nano /etc/default/isc-dhcp-relay` masing-masing dengan:
+
+<img src="">
+
+<img src="">
+
+<img src="">
+
+Kemudian jalankan service isc-dhcp-relay restart pada uml KEDIRI, SURABAYA, dan BATU
+
+## Pada Client
+
+Kemudian buka /etc/network/interfaces pada GRESIK dan SIDOARJO
+
+**SIDOARJO**
+
+    auto eth0
+    iface eth0 inet dhcp
+
+**GRESIK**
+
+    auto eth0
+    iface eth0 inet dhcp
+
+Lalu lakukan service networking restart pada keduanya :
+
+<img src="">
+
+<img src="">
+
+Jika mendapatkan IP seperti gambar di atas maka sudah benar untuk seting DHCP Server dan DHCP Relay.
+
 
 ## Nomor 1: Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi SURABAYA menggunakan iptables, namun Bibah tidak ingin kalian menggunakan MASQUERADE.
 
