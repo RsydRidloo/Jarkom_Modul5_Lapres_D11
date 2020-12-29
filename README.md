@@ -144,7 +144,7 @@ Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
 
     #SIDOARJO
         subnet 192.168.1.0 netmask 255.255.255.0 {
-        range 192.168.1.2 192.168.1.254;
+        range 192.168.1.1 192.168.1.254;
         option routers 192.168.1.1;
         option broadcast-address 192.168.1.255;
         option domain-name-servers 202.46.129.2;
@@ -154,7 +154,7 @@ Lalu setting pada `nano /etc/dhcp/dhcpd.conf`, dengan konfigurasi
 
     #GRESIK
         subnet 192.168.2.0 netmask 255.255.255.0 {
-        range 192.168.2.2 192.168.2.254;
+        range 192.168.2.1 192.168.2.254;
         option routers 192.168.2.1;
         option broadcast-address 192.168.2.255;
         option domain-name-servers 202.46.129.2;
