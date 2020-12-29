@@ -13,7 +13,7 @@ Pembagian subnet
 
 Jumlah IP pada tiap-tiap subnet dan range-nya yang ada pada topologi
 
-<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/nid.png">
+<img src="https://github.com/RsydRidloo/Jarkom_Modul5_Lapres_D11/blob/main/gambar/nid.PNG">
 
 Kemudian untuk pembagian pohonnya adalah(puncaknya menggunakan prefix /22 karena menggunakan prefix /23 tidak dapat digunakan untuk membagi 2 subnet /24
 
