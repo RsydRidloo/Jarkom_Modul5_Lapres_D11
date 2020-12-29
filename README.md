@@ -110,11 +110,11 @@ PROBOLINGGO (Sebagai Web Server)
 
 MALANG (Sebagai DNS Server)
 
-auto eth0
-iface eth0 inet static
-address 10.151.79.122
-netmask 255.255.255.248
-gateway 10.151.79.121
+    auto eth0
+    iface eth0 inet static
+    address 10.151.79.122
+    netmask 255.255.255.248
+    gateway 10.151.79.121
 
 MOJOKERTO (Sebagai DNS Server)
 
@@ -133,32 +133,32 @@ Kemudian menambahkan file route.sh di Surabaya saja, karena pada uml untuk 0.0.0
 
 Kemudian untuk kofigurasi DHCP Server pada MOJOKERTO dan DHCP RELAY pada KEDIRI, SURABAYA, dan BATU adalah
 
-Pertama sebelum install harus melakukan apt-get update terlebih dahulu
+Pertama sebelum install harus melakukan `apt-get update` terlebih dahulu
 
-Pada DHCP Server Jalankan apt-get install isc-dhcp-server pada uml MOJOKERTO
+Pada DHCP Server Jalankan **apt-get install isc-dhcp-server** pada uml MOJOKERTO
 
-Lalu setting pada /etc/dhcp/dhcpd.conf, dengan konfigurasi
+Lalu setting pada **nano /etc/dhcp/dhcpd.conf**, dengan konfigurasi
 
-subnet 10.151.79.0 netmask 255.255.255.0 {
-}
+    subnet 10.151.79.0 netmask 255.255.255.0 {
+    }
 
-#SIDOARJO
-subnet 192.168.1.0 netmask 255.255.255.0 {
-    range 192.168.1.2 192.168.1.254;
-    option routers 192.168.1.1;
-    option broadcast-address 192.168.1.255;
-    option domain-name-servers 202.46.129.2;
-    default-lease-time 600;
-    max-lease-time 7200;
-}
+    #SIDOARJO
+        subnet 192.168.1.0 netmask 255.255.255.0 {
+        range 192.168.1.2 192.168.1.254;
+        option routers 192.168.1.1;
+        option broadcast-address 192.168.1.255;
+        option domain-name-servers 202.46.129.2;
+     default-lease-time 600;
+        max-lease-time 7200;
+    }
 
-#GRESIK
-subnet 192.168.2.0 netmask 255.255.255.0 {
-    range 192.168.2.2 192.168.2.254;
-    option routers 192.168.2.1;
-    option broadcast-address 192.168.2.255;
-    option domain-name-servers 202.46.129.2;
-    default-lease-time 600;
-    max-lease-time 7200;
-}
+    #GRESIK
+        subnet 192.168.2.0 netmask 255.255.255.0 {
+        range 192.168.2.2 192.168.2.254;
+        option routers 192.168.2.1;
+        option broadcast-address 192.168.2.255;
+        option domain-name-servers 202.46.129.2;
+        default-lease-time 600;
+        max-lease-time 7200;
+    }
 
