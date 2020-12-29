@@ -40,73 +40,73 @@ Lalu setting /etc/network/interfaces pada masing-masing uml dengan konfigurasi
 
 SURABAYA (Sebagai Router)
 
-auto eth0
-iface eth0 inet static
-address 10.151.78.62
-netmask 255.255.255.252
-gateway 10.151.78.61
+    auto eth0
+    iface eth0 inet static
+    address 10.151.78.62
+    netmask 255.255.255.252
+    gateway 10.151.78.61
 
-auto eth1
-iface eth1 inet static
-address 192.168.0.1
-netmask 255.255.255.252
+    auto eth1
+    iface eth1 inet static
+    address 192.168.0.1
+    netmask 255.255.255.252
 
-auto eth2
-iface eth2 inet static
-address 192.168.0.5
-netmask 255.255.255.252
+    auto eth2
+    iface eth2 inet static
+    address 192.168.0.5
+    netmask 255.255.255.252
 
 BATU (Sebagai Router)
 
-auto eth0
-iface eth0 inet static
-address 192.168.0.2
-netmask 255.255.255.252
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.2
+    netmask 255.255.255.252
 gateway 192.168.0.1
 
-auto eth1
-iface eth1 inet static
-address 10.151.79.121
-netmask 255.255.255.248
+    auto eth1
+    iface eth1 inet static
+    address 10.151.79.121
+    netmask 255.255.255.248
 
-auto eth2
-iface eth2 inet static
-address 192.168.1.1
-netmask 255.255.255.0
+    auto eth2
+    iface eth2 inet static
+    address 192.168.1.1
+    netmask 255.255.255.0
 
 KEDIRI (Sebagai Router)
 
-auto eth0
-iface eth0 inet static
-address 192.168.0.6
-netmask 255.255.255.252
-gateway 192.168.0.5
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.6
+    netmask 255.255.255.252
+    gateway 192.168.0.5
 
-auto eth1
-iface eth1 inet static
-address 192.168.0.9
-netmask 255.255.255.248
+    auto eth1
+    iface eth1 inet static
+    address 192.168.0.9
+    netmask 255.255.255.248
 
-auto eth2
-iface eth2 inet static
-address 192.168.2.1
-netmask 255.255.255.0
+    auto eth2
+    iface eth2 inet static
+    address 192.168.2.1
+    netmask 255.255.255.0
 
 MADIUN (Sebagai Web Server)
 
-auto eth0
-iface eth0 inet static
-address 192.168.0.10
-netmask 255.255.255.248
-gateway 192.168.0.9
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.10
+    netmask 255.255.255.248
+    gateway 192.168.0.9
 
 PROBOLINGGO (Sebagai Web Server)
 
-auto eth0
-iface eth0 inet static
-address 192.168.0.11
-netmask 255.255.255.248
-gateway 192.168.0.9
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.11
+    netmask 255.255.255.248
+    gateway 192.168.0.9
 
 MALANG (Sebagai DNS Server)
 
@@ -118,18 +118,18 @@ gateway 10.151.79.121
 
 MOJOKERTO (Sebagai DNS Server)
 
-auto eth0
-iface eth0 inet static
-address 10.151.79.123
-netmask 255.255.255.248
-gateway 10.151.79.121
+    auto eth0
+    iface eth0 inet static
+    address 10.151.79.123
+    netmask 255.255.255.248
+    gateway 10.151.79.121
 
 Kemudian menambahkan file route.sh di Surabaya saja, karena pada uml untuk 0.0.0.0 sudah otomatis terbuat
 
-route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.0.2
-route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.0.6
-route add -net 192.168.0.8 netmask 255.255.255.248 gw 192.168.0.6
-route add -net 10.151.79.120 netmask 255.255.255.248 gw 192.168.0.2
+    route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.0.2
+    route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.0.6
+    route add -net 192.168.0.8 netmask 255.255.255.248 gw 192.168.0.6
+    route add -net 10.151.79.120 netmask 255.255.255.248 gw 192.168.0.2
 
 Kemudian untuk kofigurasi DHCP Server pada MOJOKERTO dan DHCP RELAY pada KEDIRI, SURABAYA, dan BATU adalah
 
